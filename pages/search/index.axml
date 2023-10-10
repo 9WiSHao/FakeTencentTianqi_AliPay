@@ -2,12 +2,12 @@
   <view class="search-top">
     <view class="input">
       <image src="/images/search.svg" alt="" />
-      <input type="text" placeholder="搜索 地区" value="{{inputValue}}" onFocus="handleFocus" onBlur="handleBlur" onInput="handleInput"/>
+      <input type="text" placeholder="搜索 地区" value="{{inputValue}}"  onFocus="handleFocus" onBlur="handleBlur" onInput="debouncedHandleInput"/>
     </view>
-    <view class="cancel">取消</view>
+    <view class="cancel" onTap="handleCancel">取消</view>
   </view>
-  <view class="search-body" a:if="{{ !isFocused }}">
-    <view class="search-main">
+  <view class="search-body" >
+    <view class="search-main" a:if="{{ !isFocused && !showResult }}">
       <view class="history">
         <view class="title">
           <view>历史记录</view>
@@ -20,11 +20,14 @@
       <view class="hot">
         <view class="title">热门城市</view>
         <view class="place">
-          <view class="suggest1" onTap="onTapHotCity" a:for="{{ hotCity }}" a:for-item="item"  data-city-code="{{item.code}}" data-full-name="{{item.fullName}}">{{item.name}}</view>
+          <view class="place1" onTap="onTapCity" a:for="{{ hotCity }}" a:for-item="item"  data-city-code="{{item.code}}" data-full-name="{{item.fullName}}">{{item.name}}</view>
         </view>
       </view>
     </view>
     <view class="loading" a:if="{{ isLoading && isFocused }}">加载中...</view>
-    <view class="search-suggest" a:if="{{ !isLoading && isFocused }}">搜索建议</view>
+    <view class="search-suggest" a:if="{{ !isLoading && showResult }}">
+      <view class="suggest1" onTap="onTapCity" a:for="{{ searchCity }}" a:for-item="item" data-city-code="{{item.code}}" data-full-name="{{item.fullName}}">{{item.fullName}}</view>
+    </view>
+    <view class="notfound" a:if="{{notfound}}">未找到此城市，请换个关键词重新搜索</view>
   </view>
 </view>

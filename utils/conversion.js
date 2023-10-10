@@ -188,12 +188,12 @@ export function airColor(aqi) {
 	}
 }
 
-export function dedupeNames(hotCityJson) {
-	let hotCity = [];
-	hotCityJson.topCityList.forEach((item, index) => {
+export function dedupeNames(cityList) {
+	let resultCityList = [];
+	cityList.forEach((item, index) => {
 		// 传过来的名字有重复，根据情况去除下重复
 		let adm2 = item.adm2;
-		if (item.adm2.substring(item.adm2.length - 1) != '市') {
+		if (item.adm2.substring(item.adm2.length - 1) != '市' && item.country == '中国') {
 			adm2 = adm2 + '市';
 		}
 		let fullName = `${item.adm1} ${adm2} ${item.name}`;
@@ -204,11 +204,7 @@ export function dedupeNames(hotCityJson) {
 			}
 		}
 
-		hotCity[index] = {
-			name: item.name,
-			code: item.id,
-			fullName: fullName,
-		};
+		resultCityList[index] = fullName;
 	});
-	return hotCity;
+	return resultCityList;
 }

@@ -1,5 +1,6 @@
 import { getCityCode, getHotCity } from '../../utils/myrequest';
 import { dedupeNames } from '../../utils/conversion';
+import { debounce } from '../../utils/debounce';
 
 Page({
 	data: {
@@ -10,15 +11,29 @@ Page({
 		inputValue: '', // 输入框的值
 		isFocused: false, // 输入框是否获得焦点
 		isLoading: false, // 是否正在加载数据
+		showResult: false, // 显示搜索记录时
+		notfound: false, // 未找到的情况
 	},
 	async onLoad() {
+		// 给输入框监听内容变化的函数加个防抖
+		this.debouncedHandleInput = debounce(this.handleInput, 300);
+
 		const hotCityJson = await getHotCity();
-		const hotCity1 = dedupeNames(hotCityJson);
+		const hotCityFullNameList = dedupeNames(hotCityJson.topCityList);
+
+		let hotCity1 = [];
+		hotCityJson.topCityList.forEach((item, index) => {
+			hotCity1[index] = {
+				name: item.name,
+				code: item.id,
+				fullName: hotCityFullNameList[index],
+			};
+		});
 		this.setData({
 			hotCity: hotCity1,
 		});
 	},
-	onTapHotCity(e) {
+	onTapCity(e) {
 		const cityName = e.target.dataset.fullName;
 		const cityCode = e.target.dataset.cityCode;
 		my.navigateTo({
@@ -26,18 +41,63 @@ Page({
 		});
 	},
 	handleFocus() {
-		console.log('焦点');
 		this.setData({
 			isFocused: true,
 		});
 	},
 	handleBlur() {
-		console.log('失焦');
 		this.setData({
 			isFocused: false,
+			notfound: false,
 		});
 	},
-	handleInput(e) {
-		console.log(e.detail.value);
+	async handleInput(e) {
+		if (!e.detail.value) {
+			return;
+		}
+
+		this.setData({
+			isLoading: true,
+			inputValue: e.detail.value,
+			notfound: false,
+		});
+		const res = await getCityCode(e.detail.value);
+		if (res.code == '404') {
+			this.setData({
+				notfound: true,
+				isLoading: false,
+				searchCity: [],
+			});
+			return;
+		}
+
+		let cityList = [];
+		const fullNameList = dedupeNames(res.location);
+		res.location.forEach((item, index) => {
+			cityList[index] = {
+				code: item.id,
+				fullName: fullNameList[index],
+			};
+		});
+		this.setData({
+			isLoading: false,
+			showResult: true,
+			searchCity: cityList,
+		});
+	},
+	handleCancel() {
+		this.setData({
+			isLoading: false,
+			showResult: false,
+			isFocused: false,
+			notfound: false,
+			/**
+			 * 这里大坑之，控制input框置空
+			 * 总而言之就是需要现在onInput里，把每次的值给赋值给inputValue
+			 * 然后别的地方给inputValue置空才有效
+			 * 我不知道怎么想的，弱智语法，这玩意都不能双向绑定
+			 */
+			inputValue: '',
+		});
 	},
 });

@@ -79,9 +79,9 @@
 	margin-left: 4vw;
 }
 
-.search-body > .search-suggest {
+/* .search-body > .search-suggest {
 	display: none;
-}
+} */
 
 .search-body > .search-suggest > view {
 	margin-left: 4vw;
@@ -111,4 +111,9 @@
 	margin-top: 0.5vh;
 	color: rgb(153, 153, 153);
 	border-bottom: none !important;
+}
+
+.notfound {
+	color: rgb(153, 153, 153);
+	text-align: center;
 }

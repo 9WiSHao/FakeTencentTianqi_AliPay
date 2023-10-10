@@ -24,7 +24,7 @@ export function getCityInformation(api, cityData) {
 export function getCityCode(cityName) {
 	return new Promise((resolve, reject) => {
 		my.request({
-			url: `${API.city}&location=${cityData}`,
+			url: `${API.city}&location=${cityName}`,
 			method: 'GET',
 			dataType: 'json',
 			timeout: 30000,
