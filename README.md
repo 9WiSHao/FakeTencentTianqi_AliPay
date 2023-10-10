@@ -1,0 +1,2 @@
+# FakeTencentTianqi_AliPay
+仿腾讯天气移植h5页面到支付宝小程序
