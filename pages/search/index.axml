@@ -11,10 +11,10 @@
       <view class="history">
         <view class="title">
           <view>历史记录</view>
-          <image src="/images/delete.svg" alt="" />
+          <image src="/images/delete.svg" alt="" onTap="deletSearchHistory"/>
         </view>
         <view class="place">
-          <view class="place1">重庆</view>
+          <view class="place1" onTap="onTapCity" a:for="{{ cityRecord }}" a:for-item="item" data-city-code="{{item.cityCode}}" data-full-name="{{item.fullName}}">{{item.fullName}}</view>
         </view>
       </view>
       <view class="hot">

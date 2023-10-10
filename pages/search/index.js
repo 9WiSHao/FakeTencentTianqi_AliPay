@@ -1,12 +1,14 @@
 import { getCityCode, getHotCity } from '../../utils/myrequest';
 import { dedupeNames } from '../../utils/conversion';
 import { debounce } from '../../utils/debounce';
+import { addCityRecord } from '../../utils/stroge';
 
 Page({
 	data: {
 		cityCode: '',
 		hotCity: [{ name: '北京', code: '101010100', fullName: '北京' }],
 		searchCity: [],
+		cityRecord: [],
 
 		inputValue: '', // 输入框的值
 		isFocused: false, // 输入框是否获得焦点
@@ -29,13 +31,20 @@ Page({
 				fullName: hotCityFullNameList[index],
 			};
 		});
+		const historyList = my.getStorageSync({ key: 'cityRecords' }).data || [];
 		this.setData({
 			hotCity: hotCity1,
+			cityRecord: historyList,
 		});
 	},
 	onTapCity(e) {
 		const cityName = e.target.dataset.fullName;
 		const cityCode = e.target.dataset.cityCode;
+		addCityRecord(cityCode, cityName);
+		const historyList = my.getStorageSync({ key: 'cityRecords' }).data || [];
+		this.setData({
+			cityRecord: historyList,
+		});
 		my.navigateTo({
 			url: `/pages/index/index?cityName=${cityName}&cityCode=${cityCode}`,
 		});
@@ -98,6 +107,12 @@ Page({
 			 * 我不知道怎么想的，弱智语法，这玩意都不能双向绑定
 			 */
 			inputValue: '',
+		});
+	},
+	deletSearchHistory() {
+		my.setStorageSync({ key: 'cityRecords', data: [] });
+		this.setData({
+			cityRecord: [],
 		});
 	},
 });
