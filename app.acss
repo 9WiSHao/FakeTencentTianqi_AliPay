@@ -1,0 +1,8 @@
+page {
+	background: #f7f7f7;
+}
+
+/* 临时全局图片大小 */
+image {
+	height: 20px;
+}

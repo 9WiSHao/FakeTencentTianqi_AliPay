@@ -1,0 +1,9 @@
+
+<view class="suggest-dialog-container">
+  <view class="suggest-dialog {{suggestDialogAnimation}}" a:if="{{suggestDialogExists}}">
+    <view class="title">{{suggestDialogData.name}}</view>
+    <view class="text">{{suggestDialogData.text}}</view>
+    <view class="ok" onTap="hidden">我知道了</view>
+  </view>    
+</view>
+

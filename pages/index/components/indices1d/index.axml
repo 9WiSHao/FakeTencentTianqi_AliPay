@@ -1,0 +1,24 @@
+
+<view class="activities-suggested">
+  <view class="table">
+    <view class ="tr">
+      <view class="td indices1" a:for="{{indices1}}" a:for-item="item" a:for-index="index" data-name="{{item.dataName}}" data-text="{{item.dataText}}" onTap="handleTap">
+        <view>
+          <image src="{{item.iconSrc}}" mode="heightFix" />
+          <view class="suggest">{{item.suggest}}</view>
+          <view class="{{item.nameClass}}">{{item.indicesName}}</view>
+        </view>
+      </view>
+    </view>
+    <view class ="tr">
+      <view class="td indices1" a:for="{{indices2}}" a:for-item="item" a:for-index="index" data-name="{{item.dataName}}" data-text="{{item.dataText}}" onTap="handleTap">
+        <view>
+          <image src="{{item.iconSrc}}" mode="heightFix" />
+          <view class="suggest">{{item.suggest}}</view>
+          <view class="{{item.nameClass}}">{{item.indicesName}}</view>
+        </view>
+      </view>
+    </view>
+  </view>
+  <view class="change-dots"></view>
+</view>

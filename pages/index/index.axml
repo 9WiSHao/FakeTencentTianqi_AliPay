@@ -1,0 +1,50 @@
+<view class="main-page">
+  <view class="top">
+    <view class="background123"></view>
+    <view class="gradient"></view>
+    <view class="background4"></view>
+    <view class="location">
+      <view class="location-word" onTap="onGoToSearch">
+        <image src="/images/location.png" mode="heightFix" />
+        <text>{{location}}</text>
+      </view>
+    </view>
+    <view class="latest-release"><view>{{latestRelease}}</view></view>
+    <view class="temperature">{{mainCityTemperature}}</view>
+    <view class="weather">{{mainWeatherText}}</view>
+    <view class="humidity-wind">
+      <view class="humidity">{{mainHumidity}}</view>
+      <view class="wind">{{mainWind}}</view>
+    </view>
+    <view class="greeting">{{greeting}}</view>
+  </view>
+  <view class="bottom">
+    <view class="today">
+      <view class="today-weather">
+        <text>今天</text>
+        <text class="temperature">{{weatherToday.temperature}}</text>
+      </view>
+      <view class="today-temperature">
+        <view>{{weatherToday.weather}}</view>
+        <image src="{{weatherToday.iconSrc}}" mode="heightFix" />
+      </view>
+    </view>
+    <view class="line"></view>
+    <view class="tomorrow">
+      <view class="tomorrow-weather">
+        <text>明天</text>
+        <text class="temperature">{{weatherTomorrow.temperature}}</text>
+      </view>
+      <view class="tomorrow-temperature">
+        <view>{{weatherTomorrow.weather}}</view>
+        <image src="{{weatherTomorrow.iconSrc}}" mode="heightFix" />
+      </view>
+    </view>
+  </view>
+</view>
+<weather24h sunTime="{{sunTime}}" cityCode="{{cityCode}}"></weather24h>
+<weather7d day7d="{{day7d}}" night7d="{{night7d}}" temperature7d="{{temperature7d}}"></weather7d>
+<indices1d onShowSuggestDialog="onShowSuggestDialog" cityCode="{{cityCode}}"></indices1d>
+
+<suggest-dialog suggestDialogExists="{{suggestDialogExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" suggestDialogData="{{suggestDialogData}}" suggestDialogAnimation="{{suggestDialogAnimation}}"></suggest-dialog>
+<mask maskExists="{{maskExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog"></mask>

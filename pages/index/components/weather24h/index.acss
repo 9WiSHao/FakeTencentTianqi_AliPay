@@ -1,0 +1,30 @@
+.real-time-weather {
+	height: 15vh;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	margin-bottom: 1vh;
+	overflow: auto;
+}
+.real-time-weather > .flexbox {
+	height: 100%;
+	width: 390vw;
+	display: flex;
+	align-items: center;
+}
+
+.real-time-weather > .flexbox > view {
+	height: 10vh;
+	width: 15vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+.real-time-weather > .flexbox > view > .time {
+	font-size: xx-small;
+	color: #999;
+}
+.real-time-weather > .flexbox > view > image {
+	height: 3vh;
+}

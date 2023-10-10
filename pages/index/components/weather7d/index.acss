@@ -1,0 +1,62 @@
+.weather-forecast {
+	width: 100vw;
+	overflow: auto;
+	height: 45vh;
+	background-color: #fff;
+	border-top: 1px solid #e4e4e4;
+	border-bottom: 1px solid #e4e4e4;
+	margin-bottom: 1vh;
+}
+
+.weather-forecast > .day {
+	width: 136vw;
+	height: 11vh;
+	margin-top: 3vh;
+	display: flex;
+}
+
+.weather-forecast > .day > view,
+.weather-forecast > .night > view {
+	width: 17vw;
+	height: 11vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+
+	align-items: center;
+}
+
+.weather-forecast > .day > view > .day-text,
+.weather-forecast > .day > view > .day-date,
+.weather-forecast > .night > view > .wind-direction,
+.weather-forecast > .night > view > .wind-power {
+	font-size: xx-small;
+	color: #999;
+}
+.weather-forecast > .day > view > .day-date {
+	margin-top: -1vh;
+}
+.weather-forecast > .night > view > .wind-direction {
+	margin-bottom: -1vh;
+}
+.weather-forecast > .day > view > image,
+.weather-forecast > .night > view > image {
+	height: 3vh;
+}
+
+.weather-forecast > .middle {
+	height: 16vh;
+	width: 136vw;
+}
+.weather-forecast > .middle > canvas {
+	height: 16vh;
+	width: 118vw;
+	margin-left: 18vw;
+}
+
+.weather-forecast > .night {
+	height: 11vh;
+	width: 136vw;
+	margin-bottom: 3vh;
+	display: flex;
+}

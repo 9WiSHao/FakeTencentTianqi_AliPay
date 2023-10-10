@@ -1,0 +1,3 @@
+
+<view class="gary-mask" a:if="{{maskExists}}" onTap="hidden">
+</view>

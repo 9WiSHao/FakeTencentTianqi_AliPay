@@ -1,0 +1,9 @@
+{
+	"usingComponents": {
+		"weather24h": "/pages/index/components/weather24h/index",
+		"weather7d": "/pages/index/components/weather7d/index",
+		"indices1d": "/pages/index/components/indices1d/index",
+		"mask": "/pages/index/components/mask/index",
+		"suggest-dialog": "/pages/index/components/suggestDialog/index"
+	}
+}

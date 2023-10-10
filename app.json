@@ -1,0 +1,25 @@
+{
+	"pages": ["pages/index/index"],
+	"subPackages": [
+		{
+			"root": "pages/search",
+			"pages": ["index"]
+		}
+	],
+	"preloadRule": {
+		"pages/index/index": {
+			"network": "all",
+			"packages": ["pages/index/components"]
+		}
+	},
+	"window": {
+		"defaultTitle": "和风天气查询",
+		"backgroundColor": "#F5F5F9",
+		"pullRefresh": false,
+		"allowsBounceVertical": "YES",
+		"titleBarColor": "#fff"
+	},
+	"behavior": {
+		"requestReferrerStrategy": "page"
+	}
+}

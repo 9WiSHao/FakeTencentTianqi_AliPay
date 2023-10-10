@@ -1,0 +1,33 @@
+<view class="weather-forecast">
+  <view class="day">
+    <view class="day0">
+      <view class="day-text">昨天</view>
+      <view class="day-date">??/??</view>
+      <view class="day-weather">未知</view>
+      <image src="/images/unknow.png" mode="heightFix" />
+    </view>
+    <view a:for="{{day7d}}" a:for-item="item" a:for-index="index" class="day1">
+      <view class="day-text">{{item.dayText}}</view>
+      <view class="day-date">{{item.dayDate}}</view>
+      <view class="day-weather">{{item.weather}}</view>
+      <image src="{{item.iconSrc}}" mode="heightFix" />
+    </view>
+  </view>
+  <view class="middle">
+    <canvas id="canvas" type="2d" onReady="onCanvasReady"></canvas>
+  </view>
+  <view class="night">
+    <view class="night0">
+      <image src="/images/unknow.png" mode="heightFix" />
+      <view class="night-weather">未知</view>
+      <view class="wind-direction">??风</view>
+      <view class="wind-power">??级</view>
+    </view>
+    <view a:for="{{night7d}}" a:for-item="item" a:for-index="index" class="night1">
+      <image src="{{item.iconSrc}}" mode="heightFix" />
+      <view class="night-weather">{{item.weather}}</view>
+      <view class="wind-direction">{{item.windDirection}}</view>
+      <view class="wind-power">{{item.windPower}}级</view>
+    </view>
+  </view>
+</view>

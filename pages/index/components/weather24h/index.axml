@@ -1,0 +1,10 @@
+
+<view class="real-time-weather">
+  <view class="flexbox">
+    <view class="time1" a:for="{{weather24hArr}}" a:for-item="item" a:for-index="index">
+      <view class="time">{{item.time}}</view>
+      <image src="{{item.iconSrc}}" mode="heightFix" />
+      <view class="temperature">{{item.temperature}}</view>
+    </view>
+  </view>
+</view>
