@@ -1,8 +1,10 @@
 import { API } from '../../utils/apis.js';
 import { getCityInformation } from '../../utils/myrequest.js';
-import { deleteDuplicate, setIconSrc, setDayOfWeek, airColor } from '../../utils/conversion.js';
+import { deleteDuplicate, setIconSrc, setDayOfWeek, airColor, dedupeNames } from '../../utils/conversion.js';
 import { allSettled } from '../../utils/allSettled.js';
 // 为了兼容写的allSettled
+import { authGuideLocation } from '../../utils/location.js';
+import { getCityCode } from '../../utils/myrequest.js';
 
 async function fetchWeatherData(cityCode) {
 	// 获取数据
@@ -201,8 +203,31 @@ Page({
 	onReady() {
 		// 页面加载完成
 	},
-	onShow() {
-		// 页面显示
+	async onShow() {
+		try {
+			// 获取位置信息相关
+			const authRes = await authGuideLocation();
+			if (authRes === true) {
+				const locationRes = await new Promise((resolve, reject) => {
+					my.getLocation({
+						type: 1,
+						success: (res) => resolve(res),
+						fail: (error) => reject(error),
+					});
+				});
+
+				console.log(locationRes);
+				// 用经纬获取所在位置，精准
+				const cityCodeRes = await getCityCode(`${locationRes.longitude},${locationRes.latitude}`);
+				console.log(cityCodeRes);
+				this.setData({
+					cityCode: cityCodeRes.location[0].id,
+					location: dedupeNames(cityCodeRes.location)[0],
+				});
+			}
+		} catch (error) {
+			console.error('出现错误: ', JSON.stringify(error));
+		}
 	},
 	onHide() {
 		// 页面隐藏
