@@ -1,0 +1,7 @@
+
+<view class="warning" a:if="{{warningExist}}">
+  <view class="warning-message1" a:for="{{ warningArray }}" data-dialog-color="{{item.dialogColor}}" data-dialog-text="{{item.dialogText}}" data-dialog-title="{{item.dialogTitle}}" onTap="handleTap">
+    <view class="circle" style="background-color:{{item.color}}"></view>
+    <view class="text">{{item.type}}</view>
+  </view>
+</view>

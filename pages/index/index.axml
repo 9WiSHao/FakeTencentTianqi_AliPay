@@ -48,6 +48,7 @@
 
 <air-quality airQuality="{{airQuality}}" onShowAirQualityDialog="onShowAirQualityDialog"></air-quality>
 <air-quality-dialog airQualityDetail="{{airQualityDetail}}" airQualityDialogExists="{{airQualityDialogExists}}" onHiddenMask="onHiddenMask" onHiddenAirQualityDialog="onHiddenAirQualityDialog" airQualityDialogAnimation="{{airQualityDialogAnimation}}"></air-quality-dialog>
+<warning onShowSuggestDialog="onShowSuggestDialog" cityCode="{{cityCode}}"></warning>
 
 <suggest-dialog suggestDialogData="{{suggestDialogData}}" suggestDialogExists="{{suggestDialogExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" suggestDialogAnimation="{{suggestDialogAnimation}}"></suggest-dialog>
 <mask maskExists="{{maskExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" onHiddenAirQualityDialog="onHiddenAirQualityDialog"></mask>

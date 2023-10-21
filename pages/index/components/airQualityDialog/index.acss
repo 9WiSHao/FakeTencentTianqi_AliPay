@@ -94,3 +94,10 @@
 	font-size: 1.5vh;
 	color: #b2b2b2;
 }
+
+.up {
+	animation: scroll-up3 0.3s ease-in-out;
+}
+.down {
+	animation: scroll-down3 0.3s ease-in-out;
+}

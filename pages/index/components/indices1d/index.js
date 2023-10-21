@@ -38,6 +38,7 @@ Component({
 	},
 	props: {
 		cityCode: '101044000',
+		onShowSuggestDialog: null,
 	},
 	data: {
 		indices1: [
@@ -81,7 +82,7 @@ Component({
 	},
 	methods: {
 		handleTap(event) {
-			const data = { text: event.target.dataset.text, name: event.target.dataset.name };
+			const data = { text: event.target.dataset.text, name: event.target.dataset.name, color: '#DFC79C' };
 			this.props.onShowSuggestDialog({ data });
 		},
 	},
