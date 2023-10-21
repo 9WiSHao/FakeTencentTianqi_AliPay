@@ -1,4 +1,5 @@
 
-<view>
-  this is a blank page
+<view class="air-quality" style="background-color: {{airQuality.color}}" onTap="handleTap">
+  <view>{{airQuality.aqi}}</view>
+  <view>{{airQuality.category}}</view>
 </view>

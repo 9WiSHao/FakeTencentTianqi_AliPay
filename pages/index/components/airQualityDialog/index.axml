@@ -1,4 +1,15 @@
 
-<view>
-  this is a blank page
+<view class="air-dialog {{airQualityDialogAnimation}}" a:if="{{ airQualityDialogExists }}">
+  <image src="/images/close.png" alt="" class="close" mode="heightFix" onTap="hidden"/>
+  <view class="top">
+    <view class="title">空气质量指数</view>
+    <view class="score">{{airQualityDetail.aqi}}</view>
+    <view class="level" style="background-color:{{airQualityDetail.color}}">{{airQualityDetail.category}}</view>
+  </view>
+  <view class="bottom">
+    <view class="others" a:for="{{airQualityDetail.detail}}" >
+      <view class="others-score">{{item.data}}</view>
+      <view class="others-title">{{item.key}}</view>
+    </view>
+  </view>
 </view>

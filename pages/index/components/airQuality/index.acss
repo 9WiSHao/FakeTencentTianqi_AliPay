@@ -1,0 +1,15 @@
+.air-quality {
+	position: absolute;
+	z-index: 10;
+	padding: 1vh;
+	border-radius: 12px;
+	background-color: #a3d765;
+	color: #fff;
+	top: 8vh;
+	left: 4vw;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	box-shadow: gray 0 1px;
+}

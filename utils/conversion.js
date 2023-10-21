@@ -169,8 +169,8 @@ export function get24hJson(json, sunrise1, sunset1, sunrise2, sunset2) {
 	return resultJson;
 }
 
-export function airColor(aqi) {
-	switch (aqi) {
+export function airColor(level) {
+	switch (level) {
 		case '1':
 			return '#a3d765';
 		case '2':

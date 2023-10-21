@@ -46,5 +46,8 @@
 <weather7d day7d="{{day7d}}" night7d="{{night7d}}" temperature7d="{{temperature7d}}"></weather7d>
 <indices1d onShowSuggestDialog="onShowSuggestDialog" cityCode="{{cityCode}}"></indices1d>
 
-<suggest-dialog suggestDialogExists="{{suggestDialogExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" suggestDialogData="{{suggestDialogData}}" suggestDialogAnimation="{{suggestDialogAnimation}}"></suggest-dialog>
-<mask maskExists="{{maskExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog"></mask>
+<air-quality airQuality="{{airQuality}}" onShowAirQualityDialog="onShowAirQualityDialog"></air-quality>
+<air-quality-dialog airQualityDetail="{{airQualityDetail}}" airQualityDialogExists="{{airQualityDialogExists}}" onHiddenMask="onHiddenMask" onHiddenAirQualityDialog="onHiddenAirQualityDialog" airQualityDialogAnimation="{{airQualityDialogAnimation}}"></air-quality-dialog>
+
+<suggest-dialog suggestDialogData="{{suggestDialogData}}" suggestDialogExists="{{suggestDialogExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" suggestDialogAnimation="{{suggestDialogAnimation}}"></suggest-dialog>
+<mask maskExists="{{maskExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" onHiddenAirQualityDialog="onHiddenAirQualityDialog"></mask>

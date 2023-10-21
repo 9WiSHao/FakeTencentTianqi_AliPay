@@ -4,6 +4,8 @@
 		"weather7d": "/pages/index/components/weather7d/index",
 		"indices1d": "/pages/index/components/indices1d/index",
 		"mask": "/pages/index/components/mask/index",
-		"suggest-dialog": "/pages/index/components/suggestDialog/index"
+		"suggest-dialog": "/pages/index/components/suggestDialog/index",
+		"air-quality": "/pages/index/components/airQuality/index",
+		"air-quality-dialog": "/pages/index/components/airQualityDialog/index"
 	}
 }

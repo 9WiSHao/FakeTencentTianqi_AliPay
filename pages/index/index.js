@@ -1,40 +1,26 @@
 import { API } from '../../utils/apis.js';
 import { getCityInformation } from '../../utils/myrequest.js';
-import { deleteDuplicate } from '../../utils/conversion.js';
-import { setIconSrc } from '../../utils/conversion.js';
-import { setDayOfWeek } from '../../utils/conversion.js';
-
-// 为了兼容写的
-function allSettled(promises) {
-	return Promise.all(
-		promises.map((p) => {
-			return p
-				.then((value) => ({
-					status: 'fulfilled',
-					value,
-				}))
-				.catch((reason) => ({
-					status: 'rejected',
-					reason,
-				}));
-		})
-	);
-}
+import { deleteDuplicate, setIconSrc, setDayOfWeek, airColor } from '../../utils/conversion.js';
+import { allSettled } from '../../utils/allSettled.js';
+// 为了兼容写的allSettled
 
 async function fetchWeatherData(cityCode) {
 	// 获取数据
 	const weatherNowPromise = getCityInformation(API.weatherNow, cityCode);
 	const weather7dPromise = getCityInformation(API.weather7d, cityCode);
+	const airQuality = getCityInformation(API.air, cityCode);
 	// return await Promise.allSettled([weatherNowPromise, weather7dPromise]);
 	// 我服了，手机上不支持Promise.allSettled，只能手动写个了，用Promise.all代替
-	return await allSettled([weatherNowPromise, weather7dPromise]);
+	return await allSettled([weatherNowPromise, weather7dPromise, airQuality]);
 }
 
 function processWeatherData(results) {
 	let nowData = {},
 		_2dData = {},
 		_7dData = {},
-		sunTime = {};
+		sunTime = {},
+		airQuality = {},
+		airQualityDetail = {};
 	// 主页今日天气数据处理
 	if (results[0].status === 'fulfilled') {
 		const json = results[0].value;
@@ -90,11 +76,44 @@ function processWeatherData(results) {
 	} else {
 		console.log('七日天气获取错误', results[1].reason);
 	}
+	// 处理空气质量数据
+	if (results[2].status === 'fulfilled') {
+		const json = results[2].value;
+		// 简单的空气质量数据
+		airQuality = {
+			aqi: json.now.aqi,
+			category: json.now.category,
+			color: airColor(json.now.level),
+		};
+		// 空气质量弹窗详情数据
+		const keys = Object.keys(json.now);
+		let detail = [];
+		for (let i = 0; i < 6; i++) {
+			let title = keys[i + 5];
+			if (title === 'pm2p5') {
+				title = 'pm2.5';
+			}
+			detail.push({
+				key: title.toUpperCase(),
+				data: json.now[keys[i + 5]],
+			});
+		}
+		airQualityDetail = {
+			aqi: json.now.aqi,
+			category: json.now.category,
+			color: airColor(json.now.level),
+			detail: detail,
+		};
+	} else {
+		console.log('空气质量获取错误', results[2].reason);
+	}
 	return {
 		nowData,
 		_2dData,
 		_7dData,
 		sunTime,
+		airQuality,
+		airQualityDetail,
 	};
 }
 
@@ -111,6 +130,10 @@ Page({
 		suggestDialogExists: false,
 		suggestDialogText: '',
 		suggestDialogAnimation: '',
+
+		airQualityDialogExists: false,
+		airQualityDialogAnimation: '',
+
 		// 默认数据
 		location: '重庆市 南岸区',
 		latestRelease: '数据提供方 加载中',
@@ -153,6 +176,8 @@ Page({
 			max: [22, 12, 13, 14, 20, 16, 17],
 			min: [1, 10, 3, 4, 10, 6, 7],
 		},
+		airQuality: {},
+		airQualityDetail: {},
 	},
 	async onLoad(query) {
 		if (query && query.cityCode) {
@@ -162,12 +187,14 @@ Page({
 			});
 		} else {
 			const results = await fetchWeatherData(this.data.cityCode);
-			const { nowData, _2dData, _7dData, sunTime } = processWeatherData(results);
+			const { nowData, _2dData, _7dData, sunTime, airQuality, airQualityDetail } = processWeatherData(results);
 			this.setData({
 				...nowData,
 				..._2dData,
 				..._7dData,
 				sunTime,
+				airQuality,
+				airQualityDetail,
 			});
 		}
 	},
@@ -204,12 +231,14 @@ Page({
 	observers: {
 		cityCode: async function (newCityCode) {
 			const results = await fetchWeatherData(newCityCode);
-			const { nowData, _2dData, _7dData, sunTime } = processWeatherData(results);
+			const { nowData, _2dData, _7dData, sunTime, airQuality, airQualityDetail } = processWeatherData(results);
 			this.setData({
 				...nowData,
 				..._2dData,
 				..._7dData,
 				sunTime,
+				airQuality,
+				airQualityDetail,
 			});
 		},
 	},
@@ -245,6 +274,23 @@ Page({
 		setTimeout(() => {
 			this.setData({
 				suggestDialogExists: false,
+			});
+		}, 300);
+	},
+	onShowAirQualityDialog() {
+		this.setData({
+			airQualityDialogExists: true,
+			airQualityDialogAnimation: 'up',
+			maskExists: true,
+		});
+	},
+	onHiddenAirQualityDialog() {
+		this.setData({
+			airQualityDialogAnimation: 'down',
+		});
+		setTimeout(() => {
+			this.setData({
+				airQualityDialogExists: false,
 			});
 		}, 300);
 	},
