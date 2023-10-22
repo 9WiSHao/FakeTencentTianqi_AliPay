@@ -1,4 +1,4 @@
 <view class="about">
   <view class="data-from" her>数据来源于&nbsp;<text data-text="和风天气 API" data-url="https://dev.qweather.com/" onTap="onTapLink">和风天气 API</text></view>
-  <view class="copyright"><text data-text="小程序源码" data-url="https://github.com/9WiSHao/FakeTencentTianqi_AliPay" onTap="onTapLink">只有Copy没有right© 2023 WiSHao</text>&nbsp;移植自&nbsp;<text data-text="腾讯天气" data-href="https://tianqi.qq.com/" onTap="onTapLink">腾讯天气</text></view>
+  <view class="copyright"><text data-text="小程序源码" data-url="https://github.com/9WiSHao/FakeTencentTianqi_AliPay" onTap="onTapLink">只有Copy没有right© 2023 WiSHao</text>&nbsp;移植自&nbsp;<text data-text="腾讯天气" data-url="https://tianqi.qq.com/" onTap="onTapLink">腾讯天气</text></view>
 </view>
