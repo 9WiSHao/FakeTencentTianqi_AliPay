@@ -215,11 +215,8 @@ Page({
 						fail: (error) => reject(error),
 					});
 				});
-
-				console.log(locationRes);
 				// 用经纬获取所在位置，精准
 				const cityCodeRes = await getCityCode(`${locationRes.longitude},${locationRes.latitude}`);
-				console.log(cityCodeRes);
 				this.setData({
 					cityCode: cityCodeRes.location[0].id,
 					location: dedupeNames(cityCodeRes.location)[0],

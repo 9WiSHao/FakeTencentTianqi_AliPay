@@ -7,6 +7,7 @@
 		"suggest-dialog": "/pages/index/components/suggestDialog/index",
 		"air-quality": "/pages/index/components/airQuality/index",
 		"air-quality-dialog": "/pages/index/components/airQualityDialog/index",
-		"warning": "/pages/index/components/warning/index"
+		"warning": "/pages/index/components/warning/index",
+		"copyright": "/pages/index/components/copyright/index"
 	}
 }

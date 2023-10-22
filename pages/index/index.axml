@@ -52,3 +52,5 @@
 
 <suggest-dialog suggestDialogData="{{suggestDialogData}}" suggestDialogExists="{{suggestDialogExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" suggestDialogAnimation="{{suggestDialogAnimation}}"></suggest-dialog>
 <mask maskExists="{{maskExists}}" onHiddenMask="onHiddenMask" onHiddenSuggestDialog="onHiddenSuggestDialog" onHiddenAirQualityDialog="onHiddenAirQualityDialog"></mask>
+
+<copyright></copyright>

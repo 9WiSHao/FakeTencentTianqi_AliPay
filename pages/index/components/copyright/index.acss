@@ -1,0 +1,20 @@
+.about {
+	width: 100vw;
+	height: 5vh;
+	margin-bottom: 2vh;
+
+	font-size: small;
+	color: #b2b2b2;
+
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+}
+
+.about text {
+	font-size: small;
+	color: #666666;
+	text-decoration: none;
+	display: inline-block;
+}
