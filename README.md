@@ -4,9 +4,9 @@
 
 # 简介
 
-学习支付宝小程序开发的练手项目。
-这是一个天气查询支付宝小程序，前后端分离，使用原生支付宝小程序框架和 js 开发，不含任何库。也没使用 ui 库，css 纯手搓。
-实现了显示城市基本天气信息和搜索某城市并显示天气信息的功能（点击顶部城市字样进入搜索）
+学习支付宝小程序开发的练手项目。  
+这是一个天气查询支付宝小程序，前后端分离，使用原生支付宝小程序框架和 js 开发，不含任何库。也没使用 ui 库，css 纯手搓。  
+实现了显示城市基本天气信息和搜索某城市并显示天气信息的功能（点击顶部城市字样进入搜索）  
 ui 布局和功能基本 1:1 还原[腾讯天气](https://xw.tianqi.qq.com/)移动端
 
 后端天气数据来自于[和风天气 API](https://dev.qweather.com/)
@@ -29,8 +29,8 @@ git clone https://github.com/9WiSHao/FakeTencentTianqi_AliPay.git
 
 ### 注意
 
-目前使用的是我自己注册的免费和风天气 api 的 key，目前（23 年 11 月）可正常使用，之后不保证能正常。
-建议自行注册账号获取 key,详见[和风天气文档](https://dev.qweather.com/docs/configuration/project-and-key/)。
+目前使用的是我自己注册的免费和风天气 api 的 key，目前（23 年 11 月）可正常使用，之后不保证能正常。  
+建议自行注册账号获取 key,详见[和风天气文档](https://dev.qweather.com/docs/configuration/project-and-key/)。  
 获取 key 后，在 utils --> apis.js 里替换 qweatherKey 字符串为自己的 key
 
 # 功能
