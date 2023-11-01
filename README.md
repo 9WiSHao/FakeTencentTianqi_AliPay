@@ -11,7 +11,7 @@ ui 布局和功能基本 1:1 还原[腾讯天气](https://xw.tianqi.qq.com/)移�
 
 后端天气数据来自于[和风天气 API](https://dev.qweather.com/)
 
-## 扫码体验此小程序 demo
+### 扫码体验此小程序 demo
 
 <img src="https://gcore.jsdelivr.net/gh/9WiSHao/AnythingStorage/img/weather_alipay.jpg" alt="alipay" width="200">
 
@@ -27,7 +27,7 @@ git clone https://github.com/9WiSHao/FakeTencentTianqi_AliPay.git
 
 然后打开支付宝小程序开发者工具，右上角打开项目，选择刚 clone 到本地的文件夹，项目类型支付宝小程序，完成
 
-## 注意
+### 注意
 
 目前使用的是我自己注册的免费和风天气 api 的 key，目前（23 年 11 月）可正常使用，之后不保证能正常。
 建议自行注册账号获取 key,详见[和风天气文档](https://dev.qweather.com/docs/configuration/project-and-key/)。
