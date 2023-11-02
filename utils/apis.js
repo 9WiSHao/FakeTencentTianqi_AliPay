@@ -1,4 +1,6 @@
-const qweatherKey = 'f066f70d77f049808a3c858fdb869ff3';
+// const qweatherKey = 'f066f70d77f049808a3c858fdb869ff3';
+const qweatherKey = 'b22686b21992475d85606e9400778122';
+
 // export const tencentLocationKey = 'TZBBZ-EN2CB-PEVU5-JOQ7F-DMMX2-UZBFJ';
 // export const getLocation = 'https://apis.map.qq.com/ws/location/v1/ip';
 // 估计小程序是用不了JSONP，调支付宝api获取位置吧

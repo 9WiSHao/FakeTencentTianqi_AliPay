@@ -119,6 +119,8 @@ function processWeatherData(results) {
 	};
 }
 
+// 全局数据，这里取的是调用地理位置的标志位，仅限初次加载调用，避免重复
+let app = getApp();
 Page({
 	options: {
 		// 使用基础库内置的数据变化观测器
@@ -204,24 +206,31 @@ Page({
 		// 页面加载完成
 	},
 	async onShow() {
+		// 判断是不是初次打开
+		if (!app.initLocation) {
+			return;
+		}
 		try {
 			// 获取位置信息相关
 			const authRes = await authGuideLocation();
-			if (authRes === true) {
-				const locationRes = await new Promise((resolve, reject) => {
-					my.getLocation({
-						type: 1,
-						success: (res) => resolve(res),
-						fail: (error) => reject(error),
-					});
-				});
-				// 用经纬获取所在位置，精准
-				const cityCodeRes = await getCityCode(`${locationRes.longitude},${locationRes.latitude}`);
-				this.setData({
-					cityCode: cityCodeRes.location[0].id,
-					location: dedupeNames(cityCodeRes.location)[0],
-				});
+			if (!authRes) {
+				return;
 			}
+			// 设置不是初次打开
+			app.initLocation = false;
+			const locationRes = await new Promise((resolve, reject) => {
+				my.getLocation({
+					type: 1,
+					success: (res) => resolve(res),
+					fail: (error) => reject(error),
+				});
+			});
+			// 用经纬获取所在位置，精准
+			const cityCodeRes = await getCityCode(`${locationRes.longitude},${locationRes.latitude}`);
+			this.setData({
+				cityCode: cityCodeRes.location[0].id,
+				location: dedupeNames(cityCodeRes.location)[0],
+			});
 		} catch (error) {
 			console.error('出现错误: ', JSON.stringify(error));
 		}
